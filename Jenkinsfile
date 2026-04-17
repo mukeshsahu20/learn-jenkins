@@ -3,37 +3,58 @@ pipeline {
 
     stages {
 
-        stage('Stage 1 - Start') {
+        stage('Checkout Source') {
             steps {
-                echo "Stage 1 is working"
+                echo "Fetching code from repository"
             }
         }
 
-        stage('Stage 2 - Build') {
+        stage('Install Dependencies') {
             steps {
-                echo "Building application..."
-                sh 'sleep 5'
+                echo "Installing application dependencies"
             }
         }
 
-        stage('Stage 3 - Test') {
+        stage('Build Artifact') {
             steps {
-                echo "Running tests..."
-                sh 'sleep 5'
+                echo "Building application artifact"
             }
         }
 
-        stage('Stage 4 - Deploy DEV') {
+        stage('Static Code Analysis') {
             steps {
-                echo "Deploying to DEV..."
-                sh 'sleep 5'
+                echo "Running code quality checks"
+            }
+        }
+
+        stage('Unit Tests') {
+            steps {
+                echo "Executing unit tests"
+            }
+        }
+
+        stage('Package Application') {
+            steps {
+                echo "Packaging application"
+            }
+        }
+
+        stage('Deploy to DEV') {
+            steps {
+                echo "Deploying to DEV environment"
+            }
+        }
+
+        stage('Post Deployment Validation') {
+            steps {
+                echo "Running smoke tests on DEV"
             }
         }
     }
 
     post {
         success {
-            echo "All stages executed successfully ✅"
+            echo "DEV pipeline completed successfully ✅"
         }
         failure {
             echo "Pipeline failed ❌"
