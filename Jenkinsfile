@@ -1,35 +1,42 @@
 pipeline {
+    agent any
 
-  agent {
-    node { label 'workstation' }
-  }
+    stages {
 
-  environment {
-    NEWRELIC_API_KEY = credentials('ansible')
-    SAMPLE_URL = "google.com"
-  }
+        stage('Stage 1 - Start') {
+            steps {
+                echo "Stage 1 is working"
+            }
+        }
 
-  stages {
+        stage('Stage 2 - Build') {
+            steps {
+                echo "Building application..."
+                sh 'sleep 5'
+            }
+        }
 
-    stage('Foo') {
-      steps {
-        echo 'Hello world'
-        echo 'Bye'
-      }
+        stage('Stage 3 - Test') {
+            steps {
+                echo "Running tests..."
+                sh 'sleep 5'
+            }
+        }
+
+        stage('Stage 4 - Deploy DEV') {
+            steps {
+                echo "Deploying to DEV..."
+                sh 'sleep 5'
+            }
+        }
     }
 
-    stage('Bar') {
-      steps {
-        echo 'Hello world'
-      }
+    post {
+        success {
+            echo "All stages executed successfully ✅"
+        }
+        failure {
+            echo "Pipeline failed ❌"
+        }
     }
-
-  }
-
-  post {
-    always {
-      echo 'I will always say Hello again!'
-    }
-  }
-
 }
