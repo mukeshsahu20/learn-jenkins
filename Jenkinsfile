@@ -1,63 +1,52 @@
-pipeline {
-    agent any
+pipeline{
 
-    stages {
+ agent any
 
-        stage('Checkout Source') {
-            steps {
-                echo "Fetching code from repository"
-            }
-        }
+ stages {
 
-        stage('Install Dependencies') {
-            steps {
-                echo "Installing application dependencies"
-            }
-        }
+  stage('code quality') {
+     steps {
+        echo "code quality"
+     }
+  }
 
-        stage('Build Artifact') {
-            steps {
-                echo "Building application artifact"
-            }
-        }
+ stage ('style checks') {
+   when {
+   branch 'master'}
+    steps {
+       echo "code quality"
+   }
+ }
 
-        stage('Static Code Analysis') {
-            steps {
-                echo "Running code quality checks"
-            }
-        }
+  stage ('unit tests') {
+    when {
+      branch 'master'}
+      steps {
+         echo "unit tests"
+    }
+  }
 
-        stage('Unit Tests') {
-            steps {
-                echo "Executing unit tests"
-            }
-        }
+  stage ('Download dependencies') {
+     when { tag "*"}
+       steps {
+          echo "Download dependencies only when there is Tag"
+    }
+  }
 
-        stage('Package Application') {
-            steps {
-                echo "Packaging application"
-            }
-        }
+  stage ('Prepare artifact') {
+       when { tag "*"}
+         steps {
+            echo "Prepare artifact only when tag is there"
+    }
+  }
 
-        stage('Deploy to DEV') {
-            steps {
-                echo "Deploying to DEV environment"
-            }
-        }
-
-        stage('Post Deployment Validation') {
-            steps {
-                echo "Running smoke tests on DEV"
-            }
-        }
+    stage ('Publish artifact') {
+       when { tag "*"}
+         steps {
+            echo "Publish artifact only when there is Tag"
+      }
     }
 
-    post {
-        success {
-            echo "DEV pipeline completed successfully ✅"
-        }
-        failure {
-            echo "Pipeline failed ❌"
-        }
-    }
+}
+
 }
