@@ -12,11 +12,10 @@ pipeline{
 
  stage ('style checks') {
    when {
-     anyof {
+     anyOf {
       branch 'main'
       tag "*"
       }
-
    }
     steps {
        echo "code quality"
@@ -25,7 +24,7 @@ pipeline{
 
   stage ('unit tests') {
     when {
-     anyof {
+     anyOf {
       branch 'main'
       tag "*"
       }
