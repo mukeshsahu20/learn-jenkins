@@ -2,39 +2,41 @@ pipeline{
 
  agent any
 
- stages {'code quality'} {
+ stages
+
+  stage{'code quality'} {
   steps {
      echo 'code quality'
      }
   }
 
- stages {'style checks'} {
+ stage {'style checks'} {
   steps {
   echo 'code quality'
    }
  }
 
-  stages {'unit tests'} {
+  stage {'unit tests'} {
    steps {
    echo 'unit tests'
     }
   }
 
-  stages {'Download dependencies'} {
+  stage {'Download dependencies'} {
   when { tag "*"}
    steps {
    echo 'Download dependencies only when there is Tag'
     }
   }
 
-  stages {'Prepare artifact'} {
+  stage {'Prepare artifact'} {
   when { tag "*"}
    steps {
    echo 'Prepare artifact only when tag is there '
     }
   }
 
-    stages {'Publish artifact'} {
+    stage {'Publish artifact'} {
     when { tag "*"}
      steps {
      echo 'Publish artifact only when there is Tag'
