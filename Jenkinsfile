@@ -23,7 +23,7 @@ pipeline{
   }
 
   stage ('Download dependencies') {
-     when ( tag "*")
+     when { tag "*"}
        steps {
           echo "Download dependencies only when there is Tag"
     }
