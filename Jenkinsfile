@@ -2,7 +2,7 @@ pipeline{
 
  agent any
 
- stages
+ stages{
 
   stage{'code quality'} {
   steps {
@@ -43,6 +43,6 @@ pipeline{
       }
     }
 
-
+}
 
 }
