@@ -29,6 +29,7 @@ pipeline{
       branch 'main'
       tag "*"
       }
+      }
 
       steps {
          echo "unit tests"
@@ -59,4 +60,4 @@ pipeline{
 }
 
 }
-}
+
