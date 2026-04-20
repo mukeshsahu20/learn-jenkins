@@ -40,3 +40,4 @@
         <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
         <scriptPath>Jenkinsfile</scriptPath>
     </factory>
+</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
