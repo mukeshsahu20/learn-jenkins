@@ -27,7 +27,6 @@
                     <credentialsId></credentialsId>
                     <traits>
                         <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
-                        <jenkins.plugins.git.traits.TagDiscoveryTrait/>
                     </traits>
                 </source>
                 <strategy class="jenkins.branch.DefaultBranchPropertyStrategy">
@@ -41,4 +40,3 @@
         <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
         <scriptPath>Jenkinsfile</scriptPath>
     </factory>
-</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
